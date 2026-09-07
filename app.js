@@ -51,6 +51,8 @@
       el.innerHTML = names(s.html);
       deck.appendChild(el);
       s.el = el;
+      var hemi = el.querySelector('[data-hemi]');
+      if (hemi) buildHemi(hemi, el.querySelector('#legend'));
     });
     buildChrome();
     buildMenu();
@@ -99,6 +101,34 @@
 
   function next() { go(cur + 1, 1); }
   function prev() { go(cur - 1, -1); }
+
+  /* --------------------------------------------------------------
+     Полукруг парламента: 145 мест, заполняется по партиям слева направо
+     -------------------------------------------------------------- */
+  function buildHemi(svg, legend) {
+    var rows = [110, 150, 190, 230, 270], counts = [17, 23, 29, 35, 41];
+    var cx = 300, cy = 305, seats = [];
+    rows.forEach(function (r, ri) {
+      for (var k = 0; k < counts[ri]; k++) {
+        var a = Math.PI - Math.PI * (k + 0.5) / counts[ri];
+        seats.push({ x: cx + r * Math.cos(a), y: cy - r * Math.sin(a), a: a });
+      }
+    });
+    seats.sort(function (p, q) { return q.a - p.a; });
+    var idx = 0, html = '', lg = '';
+    SEATS.forEach(function (p) {
+      for (var j = 0; j < p.n && idx < seats.length; j++, idx++) {
+        var st = seats[idx];
+        html += '<circle cx="' + st.x.toFixed(1) + '" cy="' + st.y.toFixed(1) + '" r="9" fill="' + p.c +
+          '" style="transition-delay:' + (idx * 7 + 250) + 'ms"/>';
+      }
+      lg += '<span><i style="background:' + p.c + '"></i>' + p.name + ' · ' + p.n + '</span>';
+    });
+    html += '<text x="300" y="296" text-anchor="middle" font-family="Unbounded,system-ui" font-weight="800" font-size="44" fill="#14161A">145</text>' +
+      '<text x="300" y="320" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2" fill="#5F646C">МАНДАТОВ</text>';
+    svg.innerHTML = html;
+    if (legend) legend.innerHTML = lg;
+  }
 
   /* --------------------------------------------------------------
      Анимация чисел
@@ -186,6 +216,8 @@
     if (nt) nt.textContent = names(SLIDES[cur].notes || '');
     var nth = document.getElementById('notesHead');
     if (nth) nth.textContent = (s.n !== null && s.n !== undefined ? 'Экран ' + pad(s.n) + ' · ' : '') + s.title;
+    var ntm = document.getElementById('notesTime');
+    if (ntm) { ntm.textContent = s.time ? '~ ' + s.time + ' сек · ' + sp.name : sp.name; }
 
     // ambient drift
     var b1 = document.querySelector('#amb .b1');
@@ -253,6 +285,8 @@
       '<tr><td><span class="key">R</span></td><td>открыть пульт в новом окне</td></tr>' +
       '<tr><td>свайп</td><td>листание на телефоне и планшете</td></tr>' +
       '</table>' +
+      '<p class="ovs" style="margin-top:24px">Сценарии всех пяти спикеров одной страницей для печати: ' +
+      '<a href="script.html" target="_blank">script.html</a></p>' +
       '<p class="ovs" style="margin-top:24px">Пульт: откройте <span class="mono">?remote=1</span> во втором окне ' +
       'того же браузера — экраны синхронизируются. Презентацию держите на проекторе, пульт на втором мониторе или ноутбуке.</p></div>';
     document.getElementById('help').addEventListener('click', function (e) {
@@ -263,7 +297,8 @@
   function buildNotes() {
     document.getElementById('notes').innerHTML =
       '<div class="ovbox"><h3 class="ovh" id="notesHead"></h3>' +
-      '<p class="ovs">Текст спикера. N или Esc — закрыть.</p>' +
+      '<p class="ovs">Текст спикера. N или Esc — закрыть. Все сценарии целиком: <a href="script.html" target="_blank">script.html</a></p>' +
+      '<span class="ntime" id="notesTime"></span>' +
       '<div class="ntext" id="notesBody"></div></div>';
     document.getElementById('notes').addEventListener('click', function (e) {
       if (e.target.id === 'notes') closeAll();
@@ -366,7 +401,7 @@
     var nx = SLIDES[Math.min(SLIDES.length - 1, i + 1)];
     document.getElementById('rN').textContent =
       (s.n !== null && s.n !== undefined ? 'ЭКРАН ' + pad(s.n) + ' · ' : '') + c.n + ' ' + c.title + ' · ' + sp.name;
-    document.getElementById('rT').textContent = s.title;
+    document.getElementById('rT').textContent = s.title + (s.time ? ' · ~' + s.time + ' сек' : '');
     document.getElementById('rNx').textContent = (nx === s ? 'конец' : nx.title);
     document.getElementById('rNotes').textContent = names(s.notes || '—');
   }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сценарий защиты — 13 минут</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EC;--ink:#14161A;--dim:#5F646C;--line:rgba(20,22,26,.12);--sky:#0E9EC4;--skyT:#0A7F9E;--gold:#E9A825;--goldT:#A86E06;--navy:#1C2B4B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+.page{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(28px,5vw,46px);letter-spacing:-.03em;line-height:1;margin:0 0 10px}
+h2{font-family:'Unbounded',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.02em;margin:0 0 4px}
+h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--skyT);margin:22px 0 8px}
+.k{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.sub{color:#2C3038;font-weight:300;font-size:17px;margin:14px 0 0}
+.box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin-top:22px;box-shadow:0 1px 2px rgba(20,22,26,.04),0 14px 34px -20px rgba(20,22,26,.28)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:400}
+.rules li{margin:6px 0}
+.sp{margin-top:44px;page-break-before:always}
+.sp .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+.pill{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--dim);background:#fff}
+.pill.a{border-color:rgba(14,158,196,.5);color:var(--skyT);background:rgba(14,158,196,.08)}
+.pill.g{border-color:rgba(233,168,37,.55);color:var(--goldT);background:rgba(233,168,37,.12)}
+.seg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:12px 0}
+.seg .h{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px}
+.seg .h b{font-weight:600}
+.seg .t{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--goldT);letter-spacing:.12em;white-space:nowrap}
+.seg p{margin:0 0 10px;font-weight:300;font-size:16px;white-space:pre-wrap}
+.seg p:last-child{margin:0}
+.seg strong{font-weight:600;background:linear-gradient(transparent 55%,rgba(233,168,37,.45) 0)}
+.hand{border-left:4px solid var(--gold);padding:10px 16px;background:rgba(233,168,37,.1);border-radius:0 10px 10px 0;margin-top:10px;font-size:14px}
+.print{position:fixed;right:20px;top:20px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--dim)}
+.print:hover{color:var(--skyT);border-color:var(--sky)}
+@media print{body{background:#fff}.print{display:none}.box,.seg{box-shadow:none}.page{padding:0}}
+</style>
+</head>
+<body>
+<button class="print" onclick="window.print()">Печать</button>
+<div class="page">
+  <div class="k">Pol 2118 · защита тем 1–2 · сценарий</div>
+  <h1>13 минут на пятерых</h1>
+  <p class="sub">Один тезис на всю защиту: <b>если аппарат политологии рабочий — он объяснит события 2026 года.</b>
+    Четыре блока строят аппарат, пятый проверяет его на кейсе. Каждый спикер называет первоисточник с автором и годом,
+    даёт казахстанский пример и произносит фразу «моя позиция состоит в том, что».</p>
+
+  <div class="box">
+    <h3 style="margin-top:0">Регламент</h3>
+    <table id="plan"></table>
+  </div>
+
+  <div class="box">
+    <h3 style="margin-top:0">Как это работает как одно целое</h3>
+    <ul class="rules">
+      <li><b>Спикер 5 — рамка.</b> Ставит тезис в начале и закрывает его в конце. В финале он <b>ссылается на каждого</b> по имени: три измерения — блок 3, сравнительный метод — блок 2, регулирование конфликтов — блок 4, «свой предмет» — блок 1.</li>
+      <li><b>Один кейс на всех.</b> Все четверо используют одни и те же цифры: 87,15 %, 145 депутатов, 110 мандатов, 2,51 % против всех. Аудитория слышит одну историю, а не пять докладов.</li>
+      <li><b>Передача по смыслу, не по списку.</b> Каждый заканчивает вопросом, на который отвечает следующий: «нужен метод» → блок 2; «что именно изучает» → блок 3; «зачем и где границы» → блок 4; «проверим на материале» → блок 5.</li>
+      <li><b>Никто не читает с листа.</b> Выучите первую и последнюю фразу своего блока. Остальное — по экрану: на нём ровно те слова, которые нужно произнести.</li>
+      <li><b>Регистр аналитический.</b> О внутренней политике — категориями науки: «система с доминирующей партией», «эффект барьера». Без оценок в любую сторону.</li>
+      <li><b>Цифры перепроверить</b> на сайте ЦИК перед защитой.</li>
+    </ul>
+  </div>
+
+  <div id="scripts"></div>
+
+  <div class="box">
+    <h3 style="margin-top:0">Вопросы, которые зададут, и короткие ответы</h3>
+    <table>
+      <tr><td><b>Чем объект отличается от предмета?</b></td><td>Объект общий — политическая сфера; предмет свой — закономерности власти. Один объект, много предметов.</td></tr>
+      <tr><td><b>Когда политология стала наукой?</b></td><td>1857 — первая кафедра (Либер); 1948 — коллоквиум ЮНЕСКО, международный стандарт.</td></tr>
+      <tr><td><b>Дайте определение политики</b></td><td>Не одно: Вебер — власть, Истон — распределение ценностей, Шмитт — друг/враг.</td></tr>
+      <tr><td><b>Политология может предсказывать?</b></td><td>Сценарно и вероятностно, как метеорология. Научность определяется методом, а не точностью прогноза.</td></tr>
+      <tr><td><b>Зачем это программистам?</b></td><td>Системы, которые мы проектируем, распределяют доступ и внимание. По Истону это политическая функция.</td></tr>
+      <tr><td><b>Ваше личное мнение о политике в стране?</b></td><td>«Как гражданин мнение имею, но в рамках защиты корректнее говорить как аналитик…» — и в науку.</td></tr>
+    </table>
+  </div>
+</div>
+<script src="data.js"></script>
+<script>
+(function(){
+  function names(s){return s.replace(/[Сс]пикер\s*([1-5])/g,function(m,d){var sp=SPEAKERS[+d-1];return (sp&&!/^Спикер\s*\d$/.test(sp.name))?sp.name:m;});}
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function mark(s){return esc(s).replace(/(МОЯ ПОЗИЦИЯ[^,]*СОСТОИТ В ТОМ, ЧТО)/g,'<strong>$1</strong>');}
+  var order=[{sp:5,ch:0,label:'Открытие'},{sp:1,ch:1},{sp:2,ch:2},{sp:3,ch:3},{sp:4,ch:4},{sp:5,ch:5,label:'Проверка и выводы'}];
+  var plan='<tr><th>Кто</th><th>Блок</th><th>Экраны</th><th>Время</th></tr>', total=0, out='';
+  order.forEach(function(o){
+    var c=CHAPTERS[o.ch], sp=SPEAKERS[o.sp-1];
+    var segs=SLIDES.filter(function(s){return s.ch===o.ch && s.n!==null && s.n!==undefined;});
+    var secs=segs.reduce(function(a,s){return a+(s.time||0);},0); total+=secs;
+    var scr=segs.map(function(s){return 'экран '+(s.n<10?'0':'')+s.n;}).join(', ');
+    plan+='<tr><td><b>'+sp.name+'</b></td><td>'+c.n+' · '+(o.label||c.title)+' — '+c.sub+'</td><td>'+scr+'</td><td>~'+Math.round(secs/60*10)/10+' мин</td></tr>';
+    out+='<section class="sp"><div class="k">Блок '+c.n+'</div><h2>'+sp.name+' — '+(o.label||c.title)+'</h2>'+
+      '<div class="meta"><span class="pill a">'+sp.topic+'</span><span class="pill g">~'+Math.round(secs/60*10)/10+' мин</span><span class="pill">'+segs.length+' экрана</span></div>';
+    segs.forEach(function(s){
+      out+='<div class="seg"><div class="h"><b>Экран '+(s.n<10?'0':'')+s.n+' · '+s.title+'</b><span class="t">~'+s.time+' сек</span></div>'+
+        names(s.notes||'').split('\n\n').map(function(p){return '<p>'+mark(p)+'</p>';}).join('')+'</div>';
+    });
+    out+='</section>';
+  });
+  plan+='<tr><td></td><td></td><td><b>Итого</b></td><td><b>~'+Math.round(total/60*10)/10+' мин</b></td></tr>';
+  document.getElementById('plan').innerHTML=plan;
+  document.getElementById('scripts').innerHTML=out;
+})();
+</script>
+</body>
+</html>
