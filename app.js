@@ -24,14 +24,9 @@
     var sp = SPEAKERS[c.sp - 1];
     s.html =
       '<div class="wrap">' +
-        '<div class="kicker" data-r>Блок ' + c.n + ' <span class="sp">/ ' + c.time + '</span></div>' +
+        '<div class="kicker" data-r>Блок ' + c.n + '</div>' +
         '<div class="big" data-r style="--i:1">' + c.title + '</div>' +
         '<p class="lede mt" data-r style="--i:3">' + c.sub + '</p>' +
-        '<div class="meta" data-r style="--i:4">' +
-          '<span class="pill a">' + sp.name + '</span>' +
-          '<span class="pill">' + sp.topic + '</span>' +
-          '<span class="pill">' + c.time + '</span>' +
-        '</div>' +
       '</div>';
     s.notes = 'Разделитель блока. Слово переходит к спикеру: ' + sp.name + '. Тема: ' + sp.topic + '.';
   });
@@ -165,9 +160,8 @@
     var hud = document.createElement('div');
     hud.id = 'hud';
     hud.innerHTML =
-      '<div class="lbl"><b id="hudCh"></b> <span id="hudSp"></span></div>' +
+      '<div class="lbl"><b id="hudCh"></b></div>' +
       '<div class="r">' +
-        '<button class="btn" id="bNotes">текст</button>' +
         '<button class="btn" id="bMenu">экраны</button>' +
         '<button class="btn" id="bHelp">?</button>' +
       '</div>';
@@ -191,7 +185,6 @@
     document.getElementById('bNext').onclick = next;
     document.getElementById('bMenu').onclick = function () { toggle('menu'); };
     document.getElementById('bHelp').onclick = function () { toggle('help'); };
-    document.getElementById('bNotes').onclick = function () { toggle('notes'); };
   }
 
   function paint() {
@@ -200,10 +193,7 @@
     var sp = SPEAKERS[c.sp - 1];
     document.querySelector('#top i').style.width = ((cur) / (SLIDES.length - 1) * 100) + '%';
     var hc = document.getElementById('hudCh');
-    if (hc) {
-      hc.textContent = c.n + ' · ' + c.title;
-      document.getElementById('hudSp').textContent = '— ' + sp.name;
-    }
+    if (hc) hc.textContent = c.n + ' · ' + c.title;
     var ds = document.querySelectorAll('#dots i');
     Array.prototype.forEach.call(ds, function (d, i) {
       d.className = i === cur ? 'cur' : (i < cur ? 'past' : '');
@@ -256,7 +246,7 @@
         var c = CHAPTERS[s.ch];
         var sp = SPEAKERS[c.sp - 1];
         h += (opened ? '</div>' : '') +
-          '<div class="mgroup">' + c.n + ' · ' + c.title + ' — ' + sp.name + ' · ' + c.time + '</div><div class="mgrid">';
+          '<div class="mgroup">' + c.n + ' · ' + c.title + '</div><div class="mgrid">';
         opened = true;
       }
       h += '<button class="mi" data-i="' + i + '"><span class="n">' +
