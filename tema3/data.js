@@ -52,10 +52,10 @@ var SLIDES = [
       '</div>' +
       '<div class="orbit" data-r style="--i:2">' +
         '<div class="sun">2500<small>лет идей</small></div>' +
-        '<div class="ring" style="--r:250px;--tilt:64deg;--t:36s;--dl:0s"><div class="chip" style="--c:#6C4DFF"><i></i>Античность<small>IV в. до н. э.</small></div></div>' +
-        '<div class="ring" style="--r:340px;--tilt:70deg;--t:36s;--dl:-9s"><div class="chip" style="--c:#FF6A4D"><i></i>Макиавелли<small>1513</small></div></div>' +
-        '<div class="ring" style="--r:430px;--tilt:74deg;--t:36s;--dl:-18s"><div class="chip" style="--c:#1FBF92"><i></i>Общественный договор<small>1651–1762</small></div></div>' +
-        '<div class="ring" style="--r:500px;--tilt:76deg;--t:36s;--dl:-27s"><div class="chip" style="--c:#D9A800"><i></i>Аль-Фараби<small>X век</small></div></div>' +
+        '<div class="ring" style="--r:250px;--orb:orbit64;--cnt:counter64;--t:36s;--dl:0s"><div class="chip" style="--c:#6C4DFF"><i></i>Античность<small>IV в. до н. э.</small></div></div>' +
+        '<div class="ring" style="--r:340px;--orb:orbit70;--cnt:counter70;--t:36s;--dl:-9s"><div class="chip" style="--c:#FF6A4D"><i></i>Макиавелли<small>1513</small></div></div>' +
+        '<div class="ring" style="--r:430px;--orb:orbit74;--cnt:counter74;--t:36s;--dl:-18s"><div class="chip" style="--c:#1FBF92"><i></i>Общественный договор<small>1651–1762</small></div></div>' +
+        '<div class="ring" style="--r:500px;--orb:orbit76;--cnt:counter76;--t:36s;--dl:-27s"><div class="chip" style="--c:#D9A800"><i></i>Аль-Фараби<small>X век</small></div></div>' +
       '</div>' +
     '</div>',
   notes: 'Добрый день. Наша тема — история политической мысли. Звучит тяжело. На самом деле это простая история. Две с половиной тысячи лет люди думали об одном: кто должен управлять и почему.'

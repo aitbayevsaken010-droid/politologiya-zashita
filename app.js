@@ -73,19 +73,21 @@
 
     if (prev && prev !== next) {
       busy = true;
-      prev.style.setProperty('--dy', (dir > 0 ? 44 : -44) + 'px');
-      prev.classList.remove('slide-in');
+      prev.classList.remove('slide-in', 'back');
       prev.classList.add('slide-out');
+      prev.classList.toggle('back', dir < 0);
       setTimeout(function () {
         prev.classList.remove('on', 'slide-out');
         prev.scrollTop = 0;
         busy = false;
       }, 320);
     }
-    next.style.setProperty('--dy', (dir > 0 ? 44 : -44) + 'px');
-    next.classList.remove('slide-out');
+    next.classList.remove('slide-out', 'back');
     next.classList.add('on', 'slide-in');
+    next.classList.toggle('back', dir < 0);
     next.scrollTop = 0;
+    if (prev !== next) revealSlide(prev, false);
+    revealSlide(next, true);
     countUp(next);
 
     cur = i;
@@ -96,6 +98,19 @@
 
   function next() { go(cur + 1, 1); }
   function prev() { go(cur - 1, -1); }
+
+  /* каскад появления по таймеру (CSS animation-delay держит главный поток занятым) */
+  function revealSlide(el, on) {
+    (el._timers || []).forEach(clearTimeout);
+    el._timers = [];
+    var items = el.querySelectorAll('[data-r]');
+    if (!on) { Array.prototype.forEach.call(items, function (x) { x.classList.remove('in'); }); return; }
+    Array.prototype.forEach.call(items, function (x, k) {
+      x.classList.remove('in');
+      var idx = parseInt(x.style.getPropertyValue('--i') || k, 10) || 0;
+      el._timers.push(setTimeout(function () { x.classList.add('in'); }, 380 + idx * 70));
+    });
+  }
 
   /* --------------------------------------------------------------
      Полукруг парламента: 145 мест, заполняется по партиям слева направо
@@ -191,7 +206,7 @@
     var s = SLIDES[cur];
     var c = CHAPTERS[s.ch];
     var sp = SPEAKERS[c.sp - 1];
-    document.querySelector('#top i').style.width = ((cur) / (SLIDES.length - 1) * 100) + '%';
+    document.querySelector('#top i').style.transform = 'scaleX(' + (cur / (SLIDES.length - 1)) + ')';
     var hc = document.getElementById('hudCh');
     if (hc) hc.textContent = c.n + ' · ' + c.title;
     var ds = document.querySelectorAll('#dots i');

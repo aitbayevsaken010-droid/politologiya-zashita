@@ -12,7 +12,7 @@
      ============================================================== */
   var W = 1280, H = 720, PERSPECTIVE = 1000, MAXS = 3;
   var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var CAM_MS = RM ? 0 : 1100, RESIZE_MS = RM ? 0 : 400;
+  var CAM_MS = RM ? 0 : 900, RESIZE_MS = RM ? 0 : 400;
   var deck = document.getElementById('deck');
   var cam = document.getElementById('cam');
   var world = document.getElementById('world');
@@ -36,7 +36,7 @@
   });
 
   /* -------- раскладка: хребет времени и пять колонн -------- */
-  var HUB_X0 = 2400, HUB_GAP = 2400, ROW = 950, HUB_SCALE = 1.4;
+  var HUB_X0 = 2400, HUB_GAP = 2400, ROW = 950, HUB_SCALE = 1;
   function layout() {
     var k = {};
     SLIDES.forEach(function (s) {
@@ -45,7 +45,7 @@
       var hubX = HUB_X0 + HUB_GAP * s.part;
       if (s.kind === 'chap') { k[s.part] = 0; s.pos = { x: hubX, y: 0, z: 0, rx: 0, ry: 0, rz: 0, sc: HUB_SCALE }; return; }
       var j = (k[s.part] = (k[s.part] || 0) + 1);
-      s.pos = { x: hubX + 300, y: ROW * j, z: -150 * (j - 1), rx: 0, ry: -8, rz: 0, sc: 1 };
+      s.pos = { x: hubX + 300, y: ROW * j, z: -150 * (j - 1), rx: 0, ry: -6, rz: 0, sc: 1 };
     });
   }
   layout();
@@ -126,13 +126,12 @@
   function fly(p, ms, extraScale) {
     if (LITE && ms) ms = Math.min(ms, 700);
     var target = winScale() * (extraScale || 1) / p.sc;
-    var zoomIn = target >= camScale;
-    var half = LITE ? 0 : ms / 2;
+    var half = 0;
     if (!judged && ms) judgeFrames(ms);
     cam.style.willChange = 'transform';
     world.style.willChange = 'transform';
-    cam.style.transition = ms ? 'transform ' + ms + 'ms var(--e-cam) ' + (zoomIn ? half : 0) + 'ms' : 'none';
-    world.style.transition = ms ? 'transform ' + ms + 'ms var(--e-cam) ' + (zoomIn ? 0 : half) + 'ms' : 'none';
+    cam.style.transition = ms ? 'transform ' + ms + 'ms var(--e-cam)' : 'none';
+    world.style.transition = ms ? 'transform ' + ms + 'ms var(--e-cam)' : 'none';
     cam.style.transform = 'perspective(' + (PERSPECTIVE / target) + 'px) scale(' + target + ')';
     world.style.transform = 'rotateZ(' + (-(p.rz || 0)) + 'deg) rotateY(' + (-(p.ry || 0)) + 'deg) rotateX(' + (-(p.rx || 0)) + 'deg) translate3d(' + (-p.x) + 'px,' + (-p.y) + 'px,' + (-p.z) + 'px)';
     camScale = target;
@@ -173,14 +172,29 @@
     Array.prototype.forEach.call(s.el.querySelectorAll('.tab.is-flipped'), function (f) { f.classList.remove('is-flipped'); });
     // сброс появления: спрятать без перехода, затем показать с задержками
     s.el.style.visibility = '';
+    if (prev !== s) reveal(prev, false);
     s.el.classList.remove('on');
-    s.el.classList.add('arm');
+    reveal(s, false);
     void s.el.offsetWidth;
-    s.el.classList.remove('arm');
     s.el.classList.add('on');
     cur = i;
-    fly(s.pos, ms === undefined ? CAM_MS : ms);
+    var dur = ms === undefined ? CAM_MS : ms;
+    fly(s.pos, dur);
+    reveal(s, true, dur);
     paint();
+  }
+
+  /* -------- каскад появления: класс .in по таймеру на каждый элемент -------- */
+  function reveal(s, on, dur) {
+    (s.timers || []).forEach(clearTimeout);
+    s.timers = [];
+    var items = s.el.querySelectorAll('[data-r]');
+    if (!on) { Array.prototype.forEach.call(items, function (el) { el.classList.remove('in'); }); return; }
+    var base = LITE ? Math.round((dur || 0) * 0.7) : Math.round((dur || 0) * 0.6), step = LITE ? 0 : 55;
+    Array.prototype.forEach.call(items, function (el, k) {
+      var idx = parseInt(el.style.getPropertyValue('--i') || k, 10) || 0;
+      s.timers.push(setTimeout(function () { el.classList.add('in'); }, base + idx * step));
+    });
   }
   function next() { if (overview) { exitOverview(); return; } go(cur + 1); }
   function prev() { if (overview) { exitOverview(); return; } go(cur - 1); }
@@ -263,7 +277,7 @@
   }
   function paint() {
     var s = SLIDES[cur], p = PARTS[s.part];
-    document.querySelector('#top i').style.width = (cur / (SLIDES.length - 1) * 100) + '%';
+    document.querySelector('#top i').style.transform = 'scaleX(' + (cur / (SLIDES.length - 1)) + ')';
     var hc = document.getElementById('hudCh');
     if (hc) hc.textContent = overview ? 'Карта пути' : (s.kind === 'cover' ? 'Тема 3' : p.rn + ' · ' + p.title);
     document.body.classList.toggle('on-cover', s.kind === 'cover' && !overview);
