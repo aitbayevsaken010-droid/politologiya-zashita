@@ -329,6 +329,19 @@
     if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.6) { dx < 0 ? next() : prev(); }
   }, { passive: true });
 
+  /* -------- лёгкий режим для слабой графики -------- */
+  if (/lite/.test(location.search)) document.body.classList.add('lite');
+  else (function watchFps() {
+    var samples = 0, slow = 0, last = 0;
+    function tick(t) {
+      if (last) { samples++; if (t - last > 25) slow++; }
+      last = t;
+      if (samples < 90) { requestAnimationFrame(tick); return; }
+      if (slow > samples * 0.35) document.body.classList.add('lite');
+    }
+    setTimeout(function () { requestAnimationFrame(tick); }, 2500);
+  })();
+
   /* --------------------------------------------------------------
      Синхронизация с пультом
      -------------------------------------------------------------- */

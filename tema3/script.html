@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>История политической мысли — тексты</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Manrope:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F2FF;--ink:#16102E;--dim:#6B6684;--line:rgba(22,16,46,.12);--sky:#6C4DFF;--skyT:#4A2FD6;--gold:#FF6A4D;--goldT:#B8452D}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+.page{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(28px,5vw,46px);letter-spacing:-.03em;line-height:1;margin:0 0 10px}
+h2{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:22px;letter-spacing:-.02em;margin:0 0 4px}
+h3{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--skyT);margin:22px 0 8px}
+.k{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.sub{color:#2B2F36;font-weight:300;font-size:17px;margin:14px 0 0}
+.box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin-top:22px;box-shadow:0 1px 0 #fff inset,0 18px 40px -24px rgba(74,47,214,.35)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:400}
+.rules li{margin:6px 0}
+.sp{margin-top:44px;page-break-before:always}
+.sp .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+.pill{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--dim);background:#fff}
+.pill.a{border-color:rgba(14,158,196,.5);color:var(--skyT);background:rgba(14,158,196,.08)}
+.pill.g{border-color:rgba(233,168,37,.55);color:var(--goldT);background:rgba(233,168,37,.12)}
+.seg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:12px 0}
+.seg .h{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px}
+.seg .h b{font-weight:600}
+.seg .t{font-family:'Space Mono',monospace;font-size:11px;color:var(--goldT);letter-spacing:.12em;white-space:nowrap}
+.seg p{margin:0 0 10px;font-weight:300;font-size:16px;white-space:pre-wrap}
+.seg p:last-child{margin:0}
+.who{border:1px dashed rgba(20,22,25,.3);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--dim);margin:0 0 12px}
+.print{position:fixed;right:20px;top:20px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--dim)}
+.print:hover{color:var(--skyT);border-color:var(--sky)}
+@media print{body{background:#fff}.print{display:none}.box,.seg{box-shadow:none}.page{padding:0}}
+</style>
+</head>
+<body>
+<button class="print" onclick="window.print()">Печать</button>
+<div class="page">
+  <div class="k">Pol 2118 · тема 3 · тексты для выступления</div>
+  <h1>История политической мысли</h1>
+  <p class="sub">Пять частей — пять остановок во времени. Один общий вывод: идеи, которым две с половиной тысячи лет,
+    работают в Казахстане прямо сейчас. Говорим просто, короткими фразами, без чтения с листа.</p>
+
+  <div class="box">
+    <h3 style="margin-top:0">Кто за что отвечает</h3>
+    <table id="plan"></table>
+    <p style="font-size:13px;color:var(--dim);margin:12px 0 0">Имена впишите ручкой в строку «Выступает» в каждой части — так удобнее, чем править файл.</p>
+  </div>
+
+  <div class="box">
+    <h3 style="margin-top:0">Как держаться</h3>
+    <ul class="rules">
+      <li><b>На экране — только опора.</b> Имя, книга, год и одна мысль. Всё остальное говорите своими словами.</li>
+      <li><b>Каждая часть заканчивается мостиком</b> к следующей: «Дальше — Средние века», «Дальше — Новое время». Так защита звучит как одна история, а не пять докладов.</li>
+      <li><b>Один пример на всех — Казахстан 2026.</b> Референдум 15 марта, Конституция 1 июля, выборы 23 августа. Каждый упоминает его хотя бы раз.</li>
+      <li><b>Первоисточник с автором и годом</b> есть в каждой части — это требование СРО по теме («анализ первоисточников»).</li>
+      <li><b>Карточки мыслителей переворачиваются</b> при наведении мыши. Переворачивайте их в момент, когда называете главную мысль.</li>
+      <li><b>О сегодняшней политике — только категориями науки,</b> без оценок в любую сторону.</li>
+    </ul>
+  </div>
+
+  <div id="scripts"></div>
+
+  <div class="box">
+    <h3 style="margin-top:0">Вопросы, которые могут задать</h3>
+    <table>
+      <tr><td><b>Чем Платон отличается от Аристотеля?</b></td><td>Платон придумывал идеал, Аристотель изучал реальные города. Идеал против наблюдения.</td></tr>
+      <tr><td><b>Почему Макиавелли считают основателем политической науки?</b></td><td>Он первым описал политику такой, какая она есть, и отделил её от морали.</td></tr>
+      <tr><td><b>В чём разница между Гоббсом и Локком?</b></td><td>Оба — за договор. Гоббс отдаёт власти всё ради безопасности, Локк оставляет людям права и ограничивает власть.</td></tr>
+      <tr><td><b>Что такое легитимность по Веберу?</b></td><td>Право власти на подчинение. Три источника: традиция, харизма, закон.</td></tr>
+      <tr><td><b>Почему аль-Фараби — «второй учитель»?</b></td><td>Он объяснил и продолжил Аристотеля для исламского мира. Первый учитель — сам Аристотель.</td></tr>
+      <tr><td><b>Ваше мнение о нынешней политике?</b></td><td>«Как граждане мнение имеем, но здесь корректнее говорить как аналитики…» — и назад к науке.</td></tr>
+    </table>
+  </div>
+</div>
+<script src="data.js"></script>
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  var plan='<tr><th>Часть</th><th>Остановка</th><th>Экраны</th><th>Время</th></tr>', total=0, out='';
+  PARTS.forEach(function(p,i){
+    var segs=SLIDES.filter(function(s){return s.part===i && s.n!==null && s.n!==undefined;});
+    var secs=segs.reduce(function(a,s){return a+(s.time||0);},0); total+=secs;
+    var scr=segs.map(function(s){return 'экран '+(s.n<10?'0':'')+s.n;}).join(', ');
+    plan+='<tr><td><b>Часть '+(i+1)+'</b></td><td>'+p.title+' · '+p.yrs+'<br><span style="color:var(--dim)">'+p.sub+'</span></td><td>'+scr+'</td><td>~'+(Math.round(secs/60*10)/10).toString().replace('.',',')+' мин</td></tr>';
+    out+='<section class="sp"><div class="k">Часть '+(i+1)+' · '+p.yrs+'</div><h2>'+p.title+'</h2>'+
+      '<div class="meta"><span class="pill a">'+p.sub+'</span><span class="pill g">~'+(Math.round(secs/60*10)/10).toString().replace('.',',')+' мин</span><span class="pill">'+segs.length+' экрана</span></div>'+
+      '<div class="who">Выступает: ______________________________</div>';
+    segs.forEach(function(s){
+      out+='<div class="seg"><div class="h"><b>Экран '+(s.n<10?'0':'')+s.n+' · '+s.title+'</b><span class="t">~'+s.time+' сек</span></div>'+
+        (s.notes||'').split('\n\n').map(function(q){return '<p>'+esc(q)+'</p>';}).join('')+'</div>';
+    });
+    out+='</section>';
+  });
+  plan+='<tr><td></td><td></td><td><b>Итого</b></td><td><b>~'+(Math.round(total/60*10)/10).toString().replace('.',',')+' мин</b></td></tr>';
+  document.getElementById('plan').innerHTML=plan;
+  document.getElementById('scripts').innerHTML=out;
+})();
+</script>
+</body>
+</html>

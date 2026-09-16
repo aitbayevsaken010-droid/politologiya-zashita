@@ -18,7 +18,7 @@
   --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
   --pad:clamp(20px,5vw,84px);
   --ease:cubic-bezier(.16,1,.3,1);
-  --shadow:0 1px 2px rgba(20,22,26,.04),0 14px 34px -20px rgba(20,22,26,.28);
+  --shadow:0 1px 2px rgba(20,22,26,.04),0 10px 22px -16px rgba(20,22,26,.26);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);
@@ -29,16 +29,14 @@ button{font-family:inherit}
 
 /* ---------- ambient: бумага, сетка, мягкие пятна ---------- */
 #amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-#amb .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;
+#amb .blob{position:absolute;border-radius:50%;opacity:.55;will-change:transform;
   transition:transform 1.6s var(--ease)}
-#amb .b1{width:60vw;height:60vw;background:radial-gradient(circle,rgba(14,158,196,.42),transparent 66%);top:-24vw;right:-16vw}
-#amb .b2{width:50vw;height:50vw;background:radial-gradient(circle,rgba(233,168,37,.36),transparent 66%);bottom:-22vw;left:-14vw}
+#amb .b1{width:80vw;height:80vw;background:radial-gradient(circle,rgba(14,158,196,.34) 0%,rgba(14,158,196,.12) 35%,transparent 68%);top:-34vw;right:-26vw}
+#amb .b2{width:70vw;height:70vw;background:radial-gradient(circle,rgba(233,168,37,.30) 0%,rgba(233,168,37,.10) 35%,transparent 68%);bottom:-32vw;left:-24vw}
 #gridbg{position:fixed;inset:0;z-index:1;pointer-events:none;
   background-image:radial-gradient(rgba(20,22,26,.16) 1px,transparent 1.2px);background-size:26px 26px;
   -webkit-mask-image:radial-gradient(90% 80% at 50% 50%,#000 30%,transparent 100%);
   mask-image:radial-gradient(90% 80% at 50% 50%,#000 30%,transparent 100%);opacity:.55}
-#grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.07;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ---------- deck ---------- */
 #deck{position:fixed;inset:0;z-index:2}
@@ -48,14 +46,14 @@ button{font-family:inherit}
 .slide.on{display:flex}
 .slide-in{animation:sIn .7s var(--ease) both}
 .slide-out{animation:sOut .32s var(--ease) both;pointer-events:none}
-@keyframes sIn{from{opacity:0;transform:translate3d(0,var(--dy,44px),0) scale(.985);filter:blur(9px)}
-  to{opacity:1;transform:none;filter:blur(0)}}
-@keyframes sOut{from{opacity:1}to{opacity:0;transform:translate3d(0,calc(var(--dy,44px) * -.45),0);filter:blur(7px)}}
+@keyframes sIn{from{opacity:0;transform:translate3d(0,var(--dy,44px),0) scale(.985)}
+  to{opacity:1;transform:none}}
+@keyframes sOut{from{opacity:1}to{opacity:0;transform:translate3d(0,calc(var(--dy,44px) * -.45),0)}}
 .wrap{width:100%;max-width:1240px;margin:auto;display:flex;flex-direction:column;justify-content:center;min-height:100%;position:relative}
 
-[data-r]{opacity:0;transform:translateY(22px);filter:blur(4px)}
+[data-r]{opacity:0;transform:translateY(22px)}
 .on [data-r]{animation:rv .78s var(--ease) forwards;animation-delay:calc(var(--i,0) * 85ms + 150ms)}
-@keyframes rv{to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes rv{to{opacity:1;transform:none}}
 
 /* ---------- typography ---------- */
 .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--skyT);
@@ -200,7 +198,7 @@ mark{background:linear-gradient(transparent 55%,rgba(233,168,37,.45) 0);color:in
 #hud .r{display:flex;gap:8px;align-items:center;pointer-events:auto}
 .btn{pointer-events:auto;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.82);color:var(--dim);
   border-radius:9px;padding:6px 11px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  transition:.25s;backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(20,22,26,.06)}
+  transition:.25s;box-shadow:0 1px 0 rgba(20,22,26,.06)}
 .btn:hover{color:var(--skyT);border-color:rgba(14,158,196,.6);background:#fff}
 #nav{position:fixed;bottom:18px;right:var(--pad);z-index:41;display:flex;gap:8px}
 #nav button{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:16px;padding:0;color:var(--ink)}
@@ -209,7 +207,7 @@ mark{background:linear-gradient(transparent 55%,rgba(233,168,37,.45) 0);color:in
 #dots i.cur{background:var(--sky);width:30px}
 #dots i.past{background:rgba(14,158,196,.45)}
 
-#menu,#help,#notes{position:fixed;inset:0;z-index:70;background:rgba(247,244,236,.95);backdrop-filter:blur(22px);
+#menu,#help,#notes{position:fixed;inset:0;z-index:70;background:rgba(247,244,236,.97);
   display:none;padding:clamp(20px,5vw,60px);overflow-y:auto}
 #menu.on,#help.on,#notes.on{display:block;animation:fade .28s ease both}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -259,12 +257,15 @@ mark{background:linear-gradient(transparent 55%,rgba(233,168,37,.45) 0);color:in
   .seal{display:none}
 }
 @media(max-width:1200px) and (min-width:901px){.g4{grid-template-columns:repeat(2,1fr)}}
+body.lite #amb .blob{transition:none}
+body.lite .card,body.lite .dim,body.lite .mi{box-shadow:none}
+body.lite .slide-in,body.lite .slide-out{animation-duration:.2s}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <div id="amb"><div class="blob b1"></div><div class="blob b2"></div></div>
-<div id="gridbg"></div><div id="grain"></div>
+<div id="gridbg"></div>
 <div id="top"><i></i></div>
 <main id="deck"></main>
 <div id="menu"></div>
