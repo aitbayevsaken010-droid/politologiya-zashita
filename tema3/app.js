@@ -100,16 +100,35 @@
   buildHelp();
   buildNotes();
 
+  /* -------- отсечение: далёкие плиты и фон чужих эпох не рисуются вовсе.
+     Видимыми держим текущую плиту, две назад и три вперёд (следующая
+     цель уже отрисована к моменту перелёта), плюс мебель соседних частей. */
+  var eras = Array.prototype.slice.call(world.querySelectorAll('.fur.era'));
+  var years = Array.prototype.slice.call(world.querySelectorAll('.fur.year'));
+  function cull() {
+    var all = overview;
+    SLIDES.forEach(function (s, i) {
+      var near = i >= cur - 2 && i <= cur + 3;
+      s.el.style.visibility = (all || near) ? '' : 'hidden';
+    });
+    var part = SLIDES[cur].part;
+    eras.forEach(function (e, i) { e.style.visibility = (all || Math.abs(i - part) <= 1) ? '' : 'hidden'; });
+    years.forEach(function (e, i) { e.style.visibility = (all || Math.abs(i - part) <= 1) ? '' : 'hidden'; });
+  }
+
   function winScale() { return Math.min(Math.min(window.innerWidth / W, window.innerHeight / H), MAXS); }
   function clamp(i) { return Math.max(0, Math.min(SLIDES.length - 1, i)); }
 
   /* -------- камера: перспектива масштабируется вместе с зумом;
      при приближении сначала поворот и сдвиг, потом масштаб; при
      отдалении — наоборот (эффект операторской тележки) -------- */
+  var LITE = false, judged = false;
   function fly(p, ms, extraScale) {
+    if (LITE && ms) ms = Math.min(ms, 700);
     var target = winScale() * (extraScale || 1) / p.sc;
     var zoomIn = target >= camScale;
-    var half = ms / 2;
+    var half = LITE ? 0 : ms / 2;
+    if (!judged && ms) judgeFrames(ms);
     cam.style.willChange = 'transform';
     world.style.willChange = 'transform';
     cam.style.transition = ms ? 'transform ' + ms + 'ms var(--e-cam) ' + (zoomIn ? half : 0) + 'ms' : 'none';
@@ -122,8 +141,28 @@
       cam.style.willChange = '';
       world.style.willChange = '';
       history.replaceState(null, '', '#' + cur);
+      cull();
     }, ms + half + 20);
   }
+
+  /* -------- лёгкий режим: решаем по кадрам первого же перелёта -------- */
+  function setLite() {
+    LITE = true;
+    document.body.classList.add('lite');
+    document.documentElement.style.setProperty('--t-cam', '700ms');
+  }
+  function judgeFrames(ms) {
+    judged = true;
+    var last = 0, n = 0, slow = 0;
+    function tick(t) {
+      if (last) { n++; if (t - last > 28) slow++; }
+      last = t;
+      if (n < Math.max(12, ms / 16)) { requestAnimationFrame(tick); return; }
+      if (slow > n * 0.3) setLite();
+    }
+    requestAnimationFrame(tick);
+  }
+  if (/lite/.test(location.search)) { judged = true; setLite(); }
 
   function go(i, ms) {
     i = clamp(i);
@@ -133,6 +172,7 @@
     if (prev !== s) prev.el.classList.remove('on');
     Array.prototype.forEach.call(s.el.querySelectorAll('.tab.is-flipped'), function (f) { f.classList.remove('is-flipped'); });
     // сброс появления: спрятать без перехода, затем показать с задержками
+    s.el.style.visibility = '';
     s.el.classList.remove('on');
     s.el.classList.add('arm');
     void s.el.offsetWidth;
@@ -155,6 +195,7 @@
   function enterOverview() {
     overview = true;
     document.body.classList.add('ov');
+    cull();
     var fit = Math.min(W / bounds.w, H / bounds.h) * 0.9;
     fly({ x: bounds.cx, y: bounds.cy, z: 0, rx: 0, ry: 0, rz: 0, sc: 1 }, CAM_MS, fit);
     paint();
@@ -282,21 +323,9 @@
     if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.6) { dx < 0 ? next() : prev(); }
   }, { passive: true });
 
-  /* -------- лёгкий режим для слабой графики -------- */
-  if (/lite/.test(location.search)) document.body.classList.add('lite');
-  else (function watchFps() {
-    var samples = 0, slow = 0, last = 0;
-    function tick(t) {
-      if (last) { samples++; if (t - last > 25) slow++; }
-      last = t;
-      if (samples < 90) { requestAnimationFrame(tick); return; }
-      if (slow > samples * 0.35) document.body.classList.add('lite');
-    }
-    setTimeout(function () { requestAnimationFrame(tick); }, 2500);
-  })();
-
   /* -------- старт -------- */
   var start = parseInt((location.hash || '').replace('#', ''), 10);
   cur = isNaN(start) ? 0 : clamp(start);
   go(cur, 0);
+  cull();
 })();

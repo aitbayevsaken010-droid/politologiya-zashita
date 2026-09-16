@@ -29,11 +29,10 @@ button{font-family:inherit}
 /* ================= ФОН: сияние, стеклянные пластины, свет за курсором ================= */
 #aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
   background:radial-gradient(120% 80% at 50% 0%,#FFFFFF 0%,var(--bg) 60%,#ECE8FF 100%)}
-#aurora i{position:absolute;display:block;border-radius:50%;will-change:transform;animation:drift var(--d) ease-in-out infinite alternate}
+#aurora i{position:absolute;display:block;border-radius:50%}
 #aurora .a1{left:-48vw;top:-37vh;width:120vw;height:90vh;background:radial-gradient(closest-side,rgba(108,77,255,.30),transparent 70%);--dx:6vw;--dy:4vh;--d:40s}
 #aurora .a2{right:-38vw;top:-28vh;width:110vw;height:80vh;background:radial-gradient(closest-side,rgba(255,106,77,.28),transparent 70%);--dx:-6vw;--dy:6vh;--d:46s}
 #aurora .a3{left:-10vw;bottom:-40vh;width:120vw;height:70vh;background:radial-gradient(closest-side,rgba(31,191,146,.24),transparent 70%);--dx:-4vw;--dy:-3vh;--d:52s}
-@keyframes drift{to{transform:translate3d(var(--dx),var(--dy),0)}}
 #shards{position:fixed;inset:0;z-index:1;pointer-events:none;perspective:1200px;overflow:hidden}
 .shard{position:absolute;border-radius:22px;border:1px solid rgba(255,255,255,.9);
   background:linear-gradient(135deg,rgba(255,255,255,.42),rgba(255,255,255,.08));
@@ -41,8 +40,8 @@ button{font-family:inherit}
   transform:translate3d(var(--px,0px),var(--py,0px),0) rotateX(var(--rx)) rotateY(var(--ry)) rotate(var(--rz));
   animation:sway var(--d,14s) ease-in-out infinite alternate}
 @keyframes sway{to{transform:translate3d(var(--px,0px),calc(var(--py,0px) - 18px),0) rotateX(calc(var(--rx) + 6deg)) rotateY(calc(var(--ry) - 8deg)) rotate(var(--rz))}}
-#spot{position:fixed;left:0;top:0;width:120vmax;height:100vmax;margin:-50vmax 0 0 -60vmax;z-index:1;pointer-events:none;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(255,255,255,.5),transparent 70%);transform:translate3d(50vw,40vh,0);will-change:transform}
+#spot{position:fixed;left:0;top:0;width:70vmax;height:70vmax;margin:-35vmax 0 0 -35vmax;z-index:1;pointer-events:none;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,255,255,.45),transparent 70%);transform:translate3d(50vw,40vh,0)}
 
 /* ================= 3D-МИР: одна камера, плиты 1280×720 в пространстве ================= */
 #deck{position:fixed;inset:0;z-index:2}                                 /* клиппинг — на body, не здесь */
@@ -60,13 +59,13 @@ body.ov .step{cursor:pointer}
 .step [data-r]{opacity:1;transform:none;transition:opacity var(--t-enter) var(--e-enter),transform var(--t-enter) var(--e-enter)}
 .step.arm [data-r]{opacity:0;transform:translate3d(0,22px,0);transition:none}
 .step.on [data-r]{opacity:1;transform:translate3d(0,0,0);
-  transition-delay:calc(var(--i,0) * 80ms + var(--t-cam) * .6)}
+  transition-delay:calc(var(--i,0) * 70ms + var(--t-cam) * .9)}
 /* мебель мира: хребет времени, фон эпохи, большие даты — на разной глубине, настоящий параллакс */
 .fur{position:absolute;left:0;top:0;pointer-events:none;transform-style:flat}
 .fur.spine{height:6px;margin:-3px 0 0 0;border-radius:3px;background:linear-gradient(90deg,transparent,rgba(108,77,255,.35) 6%,rgba(108,77,255,.35) 94%,transparent)}
-.fur.era{width:2000px;height:3600px;margin:-1800px 0 0 -1000px;border-radius:120px;background:color-mix(in srgb,var(--c) 9%,transparent);
+.fur.era{width:1700px;height:3300px;margin:-1650px 0 0 -850px;border-radius:120px;background:color-mix(in srgb,var(--c) 9%,transparent);
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:120px;gap:10px}
-.fur.era b{font-family:var(--serif);font-weight:900;font-style:italic;font-size:520px;line-height:1;color:color-mix(in srgb,var(--c) 22%,transparent)}
+.fur.era b{font-family:var(--serif);font-weight:900;font-style:italic;font-size:420px;line-height:1;color:color-mix(in srgb,var(--c) 22%,transparent)}
 .fur.era span{font-family:var(--serif);font-weight:700;font-size:150px;color:color-mix(in srgb,var(--c) 32%,transparent);white-space:nowrap}
 .fur.year{margin:-100px 0 0 -900px;width:1800px;text-align:center}
 .fur.year span{font-family:var(--serif);font-weight:900;font-size:180px;color:rgba(22,16,46,.11);white-space:nowrap;letter-spacing:-.02em}
@@ -245,6 +244,9 @@ body.lite #aurora i,body.lite .shard,body.lite .sun::after,body.lite .ring,body.
 body.lite .shard,body.lite #spot{display:none}
 body.lite .glass,body.lite .side.f,body.lite .pillar .body,body.lite .bridge .x,body.lite .bridge .y,body.lite .coin i,body.lite .rn{box-shadow:none}
 body.lite .step::after{transition:none}
+body.lite .fur.era,body.lite .fur.year{display:none}
+body.lite .step [data-r]{transition-duration:.25s;transition-delay:0s!important}
+body.lite .tab .in{transition-duration:.4s}
 @media(prefers-reduced-motion:reduce){:root{--t-cam:0ms;--t-enter:0ms}*{animation-duration:.01ms!important;transition-duration:.01ms!important;transition-delay:0s!important}}
 </style>
 </head>

@@ -209,12 +209,6 @@
     var ntm = document.getElementById('notesTime');
     if (ntm) { ntm.textContent = s.time ? '~ ' + s.time + ' сек · ' + sp.name : sp.name; }
 
-    // ambient drift
-    var b1 = document.querySelector('#amb .b1');
-    var b2 = document.querySelector('#amb .b2');
-    var k = cur / Math.max(1, SLIDES.length - 1);
-    b1.style.transform = 'translate3d(' + (k * 34) + 'vw,' + (k * 14) + 'vh,0)';
-    b2.style.transform = 'translate3d(' + (-k * 26) + 'vw,' + (-k * 12) + 'vh,0)';
   }
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }

@@ -29,8 +29,7 @@ button{font-family:inherit}
 
 /* ---------- ambient: бумага, сетка, мягкие пятна ---------- */
 #amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-#amb .blob{position:absolute;border-radius:50%;opacity:.55;will-change:transform;
-  transition:transform 1.6s var(--ease)}
+#amb .blob{position:absolute;border-radius:50%;opacity:.55}
 #amb .b1{width:80vw;height:80vw;background:radial-gradient(circle,rgba(14,158,196,.34) 0%,rgba(14,158,196,.12) 35%,transparent 68%);top:-34vw;right:-26vw}
 #amb .b2{width:70vw;height:70vw;background:radial-gradient(circle,rgba(233,168,37,.30) 0%,rgba(233,168,37,.10) 35%,transparent 68%);bottom:-32vw;left:-24vw}
 #gridbg{position:fixed;inset:0;z-index:1;pointer-events:none;
@@ -44,15 +43,15 @@ button{font-family:inherit}
   overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
 .slide::-webkit-scrollbar{display:none}
 .slide.on{display:flex}
-.slide-in{animation:sIn .7s var(--ease) both}
-.slide-out{animation:sOut .32s var(--ease) both;pointer-events:none}
+.slide-in{animation:sIn .55s var(--ease) both}
+.slide-out{animation:sOut .28s var(--ease) both;pointer-events:none}
 @keyframes sIn{from{opacity:0;transform:translate3d(0,var(--dy,44px),0) scale(.985)}
   to{opacity:1;transform:none}}
 @keyframes sOut{from{opacity:1}to{opacity:0;transform:translate3d(0,calc(var(--dy,44px) * -.45),0)}}
 .wrap{width:100%;max-width:1240px;margin:auto;display:flex;flex-direction:column;justify-content:center;min-height:100%;position:relative}
 
 [data-r]{opacity:0;transform:translateY(22px)}
-.on [data-r]{animation:rv .78s var(--ease) forwards;animation-delay:calc(var(--i,0) * 85ms + 150ms)}
+.on [data-r]{animation:rv .6s var(--ease) forwards;animation-delay:calc(var(--i,0) * 70ms + 420ms)}
 @keyframes rv{to{opacity:1;transform:none}}
 
 /* ---------- typography ---------- */
