@@ -56,10 +56,10 @@ var SLIDES = [
         '<defs><path id="sealPath" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0"/></defs>' +
         '<circle class="ring" cx="150" cy="150" r="138"/>' +
         '<circle class="ring" cx="150" cy="150" r="88"/>' +
-        '<text><textPath href="#sealPath">Pol 2118 · ЕНУ им. Гумилёва · Политология · Защита · 2026 · </textPath></text>' +
+        '<text><textPath href="#sealPath">ЕНУ им. Гумилёва · Политология · 2026 · </textPath></text>' +
         '<polygon class="star" points="150,112 158,138 186,138 164,154 172,180 150,164 128,180 136,154 114,138 142,138"/>' +
       '</svg>' +
-      '<div class="eyebrow" data-r style="--i:0">Pol 2118 · ЕНУ им. Л. Н. Гумилёва · защита тем 1–2</div>' +
+      '<div class="eyebrow" data-r style="--i:0">ЕНУ им. Л. Н. Гумилёва · Политология · темы 1–2</div>' +
       '<h1 data-r style="--i:1">Политология<span class="l2">как рабочий аппарат</span></h1>' +
       '<p class="sub" data-r style="--i:3">Две темы курса, проверенные на материале, которому две недели: ' +
         'референдум, новая Конституция и первые выборы в Курултай.</p>' +

@@ -45,7 +45,7 @@ var SLIDES = [
   html:
     '<div class="wrap">' +
       '<div>' +
-        '<div class="eye" data-r style="--i:0">Pol 2118 · тема 3</div>' +
+        '<div class="eye" data-r style="--i:0">Политология · тема 3</div>' +
         '<h1 data-r style="--i:1">История <em>политической мысли</em></h1>' +
         '<p class="sub" data-r style="--i:3">Как люди 2 500 лет спорили о том, кто должен управлять и почему — ' +
           'и как эти споры оказались в Конституции 2026 года.</p>' +
