@@ -27,9 +27,17 @@
   4. Тема 4 · IV · Как устроена
   5. Тема 4 · V · Казахстан
 
+ТЕМА 6
+  1. Тема 6 · I · Что это такое
+  2. Тема 6 · II · Откуда взялось
+  3. Тема 6 · III · Какое бывает
+  4. Тема 6 · IV · Вторая опора
+  5. Тема 6 · V · Казахстан
+
 САЙТЫ
   Темы 1–2  https://aitbayevsaken010-droid.github.io/politologiya-zashita/
   Тема 3    https://aitbayevsaken010-droid.github.io/politologiya-zashita/tema3/
   Тема 4    https://aitbayevsaken010-droid.github.io/politologiya-zashita/tema4/
+  Тема 6    https://aitbayevsaken010-droid.github.io/politologiya-zashita/tema6/
 
-Листать: стрелки или пробел. M — карта всех экранов (в темах 3 и 4).
+Листать: стрелки или пробел. M — карта всех экранов (в темах 3, 4 и 6).
