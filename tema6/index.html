@@ -172,35 +172,10 @@ mark{background:linear-gradient(transparent 50%,rgba(255,210,63,.7) 0);color:inh
   transform:perspective(700px) rotateX(64deg);transform-origin:50% 0;width:100%;box-shadow:0 30px 60px -30px rgba(74,47,214,.5)}
 
 /* ================= ОБЛОЖКА: орбита эпох ================= */
-.cover .wrap{display:grid;grid-template-columns:1.22fr .78fr;gap:20px;align-items:center}
 .cover .eye{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.cover h1{font-family:var(--serif);font-weight:900;font-size:66px;line-height:.94;letter-spacing:-.03em;margin:16px 0 0}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:92px;line-height:.94;letter-spacing:-.03em;margin:16px 0 0}
 .cover h1 em{display:block;font-style:italic;font-weight:700;background:linear-gradient(95deg,var(--violet),var(--coral) 60%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.cover .sub{margin-top:22px;font-size:19px;color:#2E2748;max-width:46ch;line-height:1.55}
-.orbit{position:relative;height:520px;display:grid;place-items:center;perspective:1000px}
-.sun{width:130px;height:130px;border-radius:50%;display:grid;place-items:center;text-align:center;
-  background:radial-gradient(circle at 34% 30%,#fff 0,#FFF3B0 20%,var(--lemon) 50%,var(--gold) 100%);
-  font-family:var(--serif);font-weight:900;font-size:22px;line-height:1;color:var(--ink);position:relative;isolation:isolate}
-.sun::after{content:"";position:absolute;inset:-14px;border-radius:50%;background:rgba(255,210,63,.2);z-index:-1;animation:pulse 5s ease-in-out infinite}
-.step:not(.on) .sun::after,.step:not(.on) .ring,.step:not(.on) .ring .chip{animation-play-state:paused}
-.sun small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;font-weight:400;margin-top:6px;color:#5A4600}
-@keyframes pulse{50%{transform:scale(1.35);opacity:.5}}
-.ring{position:absolute;left:50%;top:50%;width:var(--r);height:var(--r);margin:calc(var(--r) / -2) 0 0 calc(var(--r) / -2);border-radius:50%;
-  border:2px solid rgba(108,77,255,.30);transform-style:preserve-3d;animation:var(--orb) var(--t) linear infinite;animation-delay:var(--dl,0s)}
-.ring .chip{position:absolute;left:50%;top:0;background:#fff;border:1px solid #fff;border-radius:999px;padding:7px 12px;white-space:nowrap;
-  font-family:var(--serif);font-weight:700;font-size:15px;box-shadow:0 3px 8px -4px rgba(74,47,214,.5);display:flex;align-items:center;gap:8px;
-  animation:var(--cnt) var(--t) linear infinite;animation-delay:var(--dl,0s)}
-.ring .chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
-.ring .chip small{font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted)}
-@keyframes orbit64{from{transform:rotateX(64deg) rotateZ(0deg)}to{transform:rotateX(64deg) rotateZ(360deg)}}
-@keyframes counter64{from{transform:translate(-50%,-50%) rotateZ(0deg) rotateX(-64deg)}to{transform:translate(-50%,-50%) rotateZ(-360deg) rotateX(-64deg)}}
-@keyframes orbit70{from{transform:rotateX(70deg) rotateZ(0deg)}to{transform:rotateX(70deg) rotateZ(360deg)}}
-@keyframes counter70{from{transform:translate(-50%,-50%) rotateZ(0deg) rotateX(-70deg)}to{transform:translate(-50%,-50%) rotateZ(-360deg) rotateX(-70deg)}}
-@keyframes orbit74{from{transform:rotateX(74deg) rotateZ(0deg)}to{transform:rotateX(74deg) rotateZ(360deg)}}
-@keyframes counter74{from{transform:translate(-50%,-50%) rotateZ(0deg) rotateX(-74deg)}to{transform:translate(-50%,-50%) rotateZ(-360deg) rotateX(-74deg)}}
-@keyframes orbit76{from{transform:rotateX(76deg) rotateZ(0deg)}to{transform:rotateX(76deg) rotateZ(360deg)}}
-@keyframes counter76{from{transform:translate(-50%,-50%) rotateZ(0deg) rotateX(-76deg)}to{transform:translate(-50%,-50%) rotateZ(-360deg) rotateX(-76deg)}}
-
+.cover .sub{margin-top:26px;font-size:21px;color:#2E2748;max-width:58ch;line-height:1.55}
 /* ================= ТОГДА → СЕГОДНЯ ================= */
 .bridge{display:grid;grid-template-columns:1fr 54px 1fr;gap:7px 10px;align-items:stretch}
 .bridge .h{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 6px 2px}
@@ -245,7 +220,7 @@ body.on-cover #rail,body.ov #rail{opacity:0}
 .ntime{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);background:#fff;border:1px solid #fff;border-radius:999px;padding:5px 11px;margin-bottom:14px;box-shadow:var(--glow)}
 
 /* лёгкий режим: включается сам, если кадры идут дольше 25 мс, или вручную через ?lite */
-body.lite #aurora i,body.lite .shard,body.lite .sun::after,body.lite .ring,body.lite .ring .chip{animation:none!important}
+body.lite #aurora i,body.lite .shard{animation:none!important}
 body.lite .shard,body.lite #spot{display:none}
 body.lite .glass,body.lite .side.f,body.lite .pillar .body,body.lite .bridge .x,body.lite .bridge .y,body.lite .coin i,body.lite .rn{box-shadow:none}
 body.lite .step::after{transition:none}

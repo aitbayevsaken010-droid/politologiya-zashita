@@ -43,14 +43,7 @@ var SLIDES = [
         '<div class="eye" data-r style="--i:0">Политология · тема 6</div>' +
         '<h1 data-r style="--i:1">Государство и <em>гражданское общество</em></h1>' +
         '<p class="sub" data-r style="--i:3">Откуда взялось государство, какое оно бывает — ' +
-          'и что люди строят рядом с ним сами.</p>' +
-      '</div>' +
-      '<div class="orbit" data-r style="--i:2">' +
-        '<div class="sun">193<small>члена ООН</small></div>' +
-        '<div class="ring" style="--r:250px;--orb:orbit64;--cnt:counter64;--t:36s;--dl:0s"><div class="chip" style="--c:#1FBF92"><i></i>Гоббс<small>1651</small></div></div>' +
-        '<div class="ring" style="--r:340px;--orb:orbit70;--cnt:counter70;--t:36s;--dl:-9s"><div class="chip" style="--c:#6C4DFF"><i></i>Гегель<small>1821</small></div></div>' +
-        '<div class="ring" style="--r:430px;--orb:orbit74;--cnt:counter74;--t:36s;--dl:-18s"><div class="chip" style="--c:#FF6A4D"><i></i>Токвиль<small>1835</small></div></div>' +
-        '<div class="ring" style="--r:500px;--orb:orbit76;--cnt:counter76;--t:36s;--dl:-27s"><div class="chip" style="--c:#D9A800"><i></i>Энгельс<small>1884</small></div></div>' +
+          'и что люди строят рядом с ним сами. Пять вопросов и один вывод.</p>' +
       '</div>' +
     '</div>',
   notes: 'Добрый день. Наша тема — государство и гражданское общество. Сегодня в мире 193 государства — члена ООН, и все разные. Мы ответим на пять вопросов: что такое государство, откуда оно взялось, какое бывает, что такое гражданское общество и как всё это выглядит у нас.'
