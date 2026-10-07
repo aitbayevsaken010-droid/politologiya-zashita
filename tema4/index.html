@@ -13,7 +13,7 @@
 :root{
   --bg:#F4F2FF; --ink:#16102E; --muted:#4E4970; --line:rgba(22,16,46,.10);
   --violet:#6C4DFF; --violetD:#4A2FD6; --coral:#FF6A4D; --coralD:#C2461F; --mint:#1FBF92; --lemon:#FFD23F; --gold:#D9A800; --plum:#2A1B5E;
-  --glass:rgba(255,255,255,.74);
+  --glass:rgba(255,255,255,.9);
   --serif:'Playfair Display',Georgia,'Times New Roman',serif;
   --sans:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
@@ -89,18 +89,16 @@ mark{background:linear-gradient(transparent 50%,rgba(255,210,63,.7) 0);color:inh
 .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
 .glass{background:var(--glass);border:1px solid rgba(255,255,255,.95);border-radius:22px;padding:20px 22px;
   box-shadow:var(--glow);transition:transform .55s var(--ease),box-shadow .4s;position:relative;overflow:hidden}
-.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(120deg,rgba(255,255,255,.55),transparent 38%,transparent 62%,rgba(255,255,255,.35));opacity:.7}
 .glass:hover{transform:translateY(-4px)}
 .glass h3{font-family:var(--serif);font-weight:700;font-size:19px;line-height:1.2;margin:0 0 8px;letter-spacing:-.01em}
-.glass p{margin:0;font-size:14.5px;line-height:1.55;color:#3A3355}
+.glass p{margin:0;font-size:14.5px;line-height:1.55;color:#2B2540}
 .glass p + p{margin-top:8px}
 .glass p b{color:var(--ink);font-weight:700}
 .glass .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .glass .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--violet))}
 .glass.v{--c:var(--violet)} .glass.c{--c:var(--coral)} .glass.m{--c:var(--mint)} .glass.l{--c:var(--gold)}
 .glass.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
-.glass.solid h3{color:#fff} .glass.solid p{color:rgba(255,255,255,.82)} .glass.solid p b{color:var(--lemon)} .glass.solid .tag{color:rgba(255,255,255,.7)}
+.glass.solid h3{color:#fff} .glass.solid p{color:rgba(255,255,255,.9)} .glass.solid p b{color:var(--lemon)} .glass.solid .tag{color:rgba(255,255,255,.7)}
 .glass.solid::after{opacity:.15}
 .glass.big h3{font-size:24px}
 
@@ -133,7 +131,7 @@ mark{background:linear-gradient(transparent 50%,rgba(255,210,63,.7) 0);color:inh
 .side.f::before{content:attr(data-init);position:absolute;right:-6px;top:-22px;font-family:var(--serif);font-weight:900;font-style:italic;font-size:160px;line-height:1;color:var(--c,var(--violet));opacity:.12;pointer-events:none}
 .side .yrs{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .side .nm{font-family:var(--serif);font-weight:900;font-size:30px;letter-spacing:-.02em;line-height:1.02;margin:8px 0 8px}
-.side .bk{font-size:14px;color:#3A3355}
+.side .bk{font-size:14px;color:#2B2540}
 .side .bk b{color:var(--ink);font-weight:700}
 .side.b{transform:rotateY(180deg);background:linear-gradient(150deg,var(--c,var(--violet)),color-mix(in srgb,var(--c,var(--violet)) 55%,#16102E));color:#fff;justify-content:center;border:1px solid rgba(255,255,255,.35)}
 .side.b .q{font-family:var(--serif);font-style:italic;font-weight:700;font-size:21px;line-height:1.32}
@@ -148,7 +146,7 @@ mark{background:linear-gradient(transparent 50%,rgba(255,210,63,.7) 0);color:inh
 .pillar .body{background:repeating-linear-gradient(90deg,#FFFFFF 0 18px,#F0EDFF 18px 24px);border:1px solid #fff;border-top:0;padding:18px 22px 20px;border-radius:0 0 18px 18px;box-shadow:var(--glow);min-height:150px}
 .pillar .body h3{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 4px}
 .pillar .body .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.pillar .body p{margin:0;font-size:14.5px;line-height:1.55;color:#3A3355}
+.pillar .body p{margin:0;font-size:14.5px;line-height:1.55;color:#2B2540}
 .pillar .body p b{color:var(--ink);font-weight:700}
 .pillar .band{height:6px;border-radius:3px;background:var(--c);margin:-2px 0 12px}
 
@@ -204,7 +202,7 @@ mark{background:linear-gradient(transparent 50%,rgba(255,210,63,.7) 0);color:inh
 /* ================= ТОГДА → СЕГОДНЯ ================= */
 .bridge{display:grid;grid-template-columns:1fr 54px 1fr;gap:7px 10px;align-items:stretch}
 .bridge .h{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 6px 2px}
-.bridge .x,.bridge .y{background:var(--glass);border:1px solid rgba(255,255,255,.95);border-radius:14px;padding:7px 14px;box-shadow:var(--glow);font-size:14px;line-height:1.35;color:#3A3355}
+.bridge .x,.bridge .y{background:var(--glass);border:1px solid rgba(255,255,255,.95);border-radius:14px;padding:7px 14px;box-shadow:var(--glow);font-size:14px;line-height:1.35;color:#2B2540}
 .bridge .x b,.bridge .y b{display:block;font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--ink);margin-bottom:0}
 .bridge .x{border-left:5px solid var(--coral)} .bridge .y{border-left:5px solid var(--mint)}
 .bridge .ar{display:grid;place-items:center}
