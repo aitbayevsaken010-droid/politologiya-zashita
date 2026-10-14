@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политические идеологии</title>
+<meta name="description" content="Тема 7: что такое идеология, какие они бывают и как определить идеологию партии.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111214; --mut:#76787d; --line:#e6e6e8; --bg:#ffffff;
+  --pad:clamp(28px,6vw,100px);
+  --panel:min(520px,42vw);
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);
+  font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+::selection{background:var(--ink);color:#fff}
+
+/* ---------- тонкая линия прогресса ---------- */
+#bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:7}
+
+/* ---------- экран ---------- */
+#stage{position:fixed;inset:0;display:flex;align-items:center;padding:0 var(--pad)}
+.col{width:min(640px,52vw)}
+.kick{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 30px}
+h1{font-weight:600;font-size:clamp(28px,3.5vw,44px);line-height:1.16;letter-spacing:-.02em;margin:0 0 26px}
+.lines{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.lines li{position:relative;padding-left:20px;font-size:clamp(16px,1.35vw,19px);line-height:1.5;color:#2c2e33}
+.lines li::before{content:"";position:absolute;left:0;top:.68em;width:8px;height:1px;background:#b6b8bc}
+.lines li b{font-weight:600;color:var(--ink)}
+
+/* обложка и финал — крупнее, без маркеров */
+.cover h1{font-size:clamp(34px,5.4vw,68px);line-height:1.08;margin-bottom:22px}
+.cover .sub{font-size:clamp(16px,1.5vw,21px);line-height:1.5;color:#45474c;max-width:46ch;margin:0}
+.cover .col{width:min(760px,62vw)}
+body.open .cover .col{width:min(640px,52vw)}
+
+/* ---------- блок с текстом справа ---------- */
+#panel{position:fixed;top:0;right:0;bottom:0;width:var(--panel);background:#fff;
+  border-left:1px solid var(--line);padding:clamp(30px,5vh,60px) clamp(28px,3vw,48px);
+  overflow-y:auto;display:none;z-index:6}
+body.open #panel{display:block}
+#panel .t{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 22px}
+#panel p{font-size:17px;line-height:1.68;color:#1d1f23;margin:0 0 18px}
+#panel p:last-of-type{margin-bottom:0}
+#panel .src{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;line-height:1.6;color:var(--mut)}
+#panel .src div + div{margin-top:5px}
+
+/* ---------- кнопка снизу ---------- */
+#logo{position:fixed;left:var(--pad);bottom:34px;z-index:8;display:flex;align-items:center;gap:14px;
+  background:none;border:0;padding:0}
+#logo i{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;
+  font-style:normal;font-size:21px;line-height:1}
+#logo span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+body.open #logo i{background:#fff;color:var(--ink);border:1px solid var(--line)}
+
+/* ---------- навигация ---------- */
+#nav{position:fixed;right:var(--pad);bottom:34px;z-index:8;display:flex;align-items:center;gap:16px}
+body.open #nav{right:calc(var(--panel) + 36px)}
+#nav .no{font-size:12px;letter-spacing:.14em;color:var(--mut);font-variant-numeric:tabular-nums}
+#nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:none;font-size:15px}
+#nav button:hover{border-color:var(--ink)}
+
+/* ---------- список экранов ---------- */
+#index{position:fixed;inset:0;background:#fff;z-index:9;display:none;overflow-y:auto;padding:var(--pad)}
+body.idx #index{display:block}
+#index h2{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 28px}
+#index ol{list-style:none;margin:0;padding:0;columns:2;column-gap:60px}
+#index li{break-inside:avoid;margin:0 0 2px}
+#index button{display:block;width:100%;text-align:left;border:0;background:none;padding:9px 0;border-bottom:1px solid var(--line);
+  font-size:16px;display:flex;gap:16px}
+#index button em{font-style:normal;color:var(--mut);font-size:13px;min-width:28px;font-variant-numeric:tabular-nums}
+#index button:hover{color:#000}
+#index button:hover em{color:var(--ink)}
+#index li.cur button{font-weight:600}
+
+@media(max-width:900px){
+  .col,.cover .col{width:100%}
+  :root{--panel:100vw}
+  #nav{bottom:auto;top:26px}
+  body.open #nav{right:var(--pad)}
+  #index ol{columns:1}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<main id="stage"></main>
+<aside id="panel"></aside>
+<button id="logo" aria-expanded="false"><i>+</i><span>текст</span></button>
+<div id="nav"><span class="no" id="no"></span><button id="prev" aria-label="назад">←</button><button id="next" aria-label="вперёд">→</button></div>
+<div id="index"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

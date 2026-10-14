@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политические идеологии — тексты</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111214;--mut:#76787d;--line:#e6e6e8}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:400 16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.page{max-width:780px;margin:0 auto;padding:56px 24px 90px}
+.k{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+h1{font-weight:600;font-size:clamp(28px,4.4vw,40px);letter-spacing:-.02em;line-height:1.15;margin:14px 0 12px}
+h2{font-weight:600;font-size:22px;letter-spacing:-.01em;margin:0 0 4px}
+.sub{color:#45474c;margin:0}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:18px}
+td,th{padding:10px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+td + td,th + th{padding-left:16px}
+.sec{margin-top:56px;page-break-before:always}
+.meta{color:var(--mut);font-size:14px;margin:4px 0 18px}
+.who{border:1px dashed #c9cacd;padding:10px 14px;font-size:14px;color:var(--mut);margin:0 0 6px}
+.seg{border-top:1px solid var(--line);padding:18px 0}
+.seg .h{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+.seg .h b{font-weight:600}
+.seg .t{font-size:12px;letter-spacing:.12em;color:var(--mut);white-space:nowrap}
+.seg p{margin:0 0 10px}
+.seg .src{font-size:13px;color:var(--mut)}
+ul.rules{padding-left:18px;margin:14px 0 0}
+ul.rules li{margin:6px 0}
+.print{position:fixed;right:20px;top:20px;border:1px solid var(--line);background:#fff;padding:8px 14px;font:500 12px 'Inter',sans-serif;
+  letter-spacing:.12em;text-transform:uppercase;cursor:pointer;color:var(--mut)}
+@media print{.print{display:none}.page{padding:0}}
+</style>
+</head>
+<body>
+<button class="print" onclick="window.print()">Печать</button>
+<div class="page">
+  <div class="k">Политология · тема 7 · тексты для выступления</div>
+  <h1>Политические идеологии</h1>
+  <p class="sub">Пять частей на пятерых. На экране только заголовок и две-три строки — полный текст каждого экрана
+    открывается кнопкой снизу слева и показывается справа. Его же можно говорить своими словами.</p>
+  <table id="plan"></table>
+  <ul class="rules">
+    <li><b>Не читай с листа.</b> На экране опора, в блоке справа — полный текст, если сбился.</li>
+    <li><b>Заканчивай фразой-переходом</b> — она в конце твоего последнего экрана.</li>
+    <li><b>Назови автора и год</b> — они внизу блока справа.</li>
+    <li><b>О сегодняшней политике — без оценок,</b> только категориями науки.</li>
+    <li><b>Управление:</b> → ← листать, кнопка «+» или Enter — блок с текстом, M — все экраны, F — полный экран.</li>
+  </ul>
+  <div id="out"></div>
+  <div class="sec">
+    <h2>Вопросы, которые могут задать</h2>
+    <table>
+      <tr><td><b>Чем идеология отличается от науки?</b></td><td>Наука объясняет, как есть. Идеология говорит, как должно быть, и даёт программу действий.</td></tr>
+      <tr><td><b>Откуда «левые» и «правые»?</b></td><td>Национальное собрание Франции, 1789: сторонники короля сели справа, сторонники перемен — слева.</td></tr>
+      <tr><td><b>Либерализм и консерватизм — главное различие?</b></td><td>Что важнее: свобода отдельного человека (либерализм) или устойчивость общества и традиция (консерватизм).</td></tr>
+      <tr><td><b>Социал-демократия и коммунизм — в чём разница?</b></td><td>Корень один — социализм. Коммунисты за революцию и общую собственность, социал-демократы — за реформы через парламент при сохранении рынка (Бернштейн, 1899).</td></tr>
+      <tr><td><b>Что такое «конец истории»?</b></td><td>Тезис Фукуямы, 1992: либерализм победил, спор идеологий окончен. Не подтвердился — спор продолжается.</td></tr>
+      <tr><td><b>Есть ли в Казахстане государственная идеология?</b></td><td>Конституция признаёт идеологическое и политическое многообразие — ни одна идеология не закреплена как обязательная.</td></tr>
+      <tr><td><b>Как писать эссе СРО недели 7?</b></td><td>Взять две-три развитые страны и их ведущие партии, задать каждой три вопроса (государство и экономика, традиция, справедливость) и показать их место на карте «левые — правые».</td></tr>
+      <tr><td><b>Ваше мнение о нынешней политике?</b></td><td>«Как граждане мнение имеем, но здесь корректнее говорить как аналитики…» — и назад к науке.</td></tr>
+    </table>
+  </div>
+</div>
+<script src="data.js"></script>
+<script>
+(function(){
+  function esc(s){return String(s).replace(/<[^>]+>/g,'').replace(/&/g,'&amp;');}
+  function mins(x){return (Math.round(x/60*10)/10).toString().replace('.',',');}
+  var plan='<tr><th>Часть</th><th>О чём</th><th>Экраны</th><th>Время</th></tr>', out='', total=0;
+  PARTS.forEach(function(p,i){
+    var segs=SLIDES.filter(function(s){return s.part===i && s.n!==null && s.n!==undefined;});
+    if(i===0) segs=SLIDES.filter(function(s){return s.kind==='cover';}).concat(segs);
+    if(i===PARTS.length-1) segs=segs.concat(SLIDES.filter(function(s){return s.kind==='end';}));
+    var sec=segs.reduce(function(a,s){return a+(s.time||0);},0); total+=sec;
+    plan+='<tr><td><b>'+p.rn+'</b></td><td>'+p.title+'<br><span style="color:var(--mut)">'+p.sub+'</span></td><td>'+
+      segs.map(function(s){return s.n!==null&&s.n!==undefined?('экран '+(s.n<10?'0':'')+s.n):s.title.toLowerCase();}).join(', ')+'</td><td>~'+mins(sec)+' мин</td></tr>';
+    out+='<div class="sec"><div class="k">Часть '+p.rn+'</div><h2>'+p.title+'</h2><div class="meta">'+p.sub+' · ~'+mins(sec)+' мин</div>'+
+      '<div class="who">Выступает: ______________________</div>';
+    segs.forEach(function(s){
+      out+='<div class="seg"><div class="h"><b>'+(s.n!==null&&s.n!==undefined?('Экран '+(s.n<10?'0':'')+s.n+' · '):'')+s.title+'</b><span class="t">~'+s.time+' сек</span></div>'+
+        (s.notes||'').split('\n\n').map(function(x){return '<p>'+esc(x)+'</p>';}).join('')+
+        (s.src&&s.src.length?'<div class="src">'+s.src.map(esc).join(' · ')+'</div>':'')+'</div>';
+    });
+    out+='</div>';
+  });
+  plan+='<tr><td></td><td></td><td><b>Итого</b></td><td><b>~'+mins(total)+' мин</b></td></tr>';
+  document.getElementById('plan').innerHTML=plan; document.getElementById('out').innerHTML=out;
+})();
+</script>
+</body>
+</html>
