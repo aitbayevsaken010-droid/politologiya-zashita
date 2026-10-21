@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политические партии и движения</title>
+<meta name="description" content="Тема 8: что такое партия, как она работает, чем отличается от движения и как придумать свою.">
+<meta name="theme-color" content="#f2eee6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2eee6; --ink:#17171b; --mut:#6f6a62; --line:#d9d3c7; --dot:#e2dccf;
+  --acc:#e2462c; --acc-soft:#f7ddd4;
+  --night:#17171b; --night-ink:#ece7dd; --night-mut:#a29c91; --night-line:#34343a;
+  --pad:clamp(28px,6vw,110px);
+  --panel:min(520px,42vw);
+  --head:'Unbounded',system-ui,sans-serif;
+  --sans:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;color:var(--ink);
+  font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+body{background:var(--paper) radial-gradient(var(--dot) 1px,transparent 1.3px) 0 0/26px 26px}
+button{font:inherit;color:inherit;cursor:pointer}
+::selection{background:var(--acc);color:#fff}
+
+/* ---------- верхняя строка ---------- */
+#top{position:fixed;top:0;left:0;right:0;height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--pad);border-bottom:1px solid var(--line);background:var(--paper);z-index:5}
+body.open #top{right:var(--panel)}
+#top .brand{font:500 11px/1 var(--head);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+#top .brand i{width:10px;height:10px;background:var(--acc);display:block}
+#parts{display:flex;gap:22px;font-size:12px;color:var(--mut)}
+#parts span{display:flex;align-items:center;gap:8px;padding:21px 0;border-bottom:2px solid transparent;margin-bottom:-1px}
+#parts b{font:500 11px/1 var(--head)}
+#parts em{font-style:normal;display:none}
+#parts .cur{color:var(--ink);border-bottom-color:var(--acc)}
+#parts .cur em{display:inline}
+
+/* ---------- экран ---------- */
+#stage{position:fixed;top:62px;left:0;right:0;bottom:0;display:flex;align-items:center;padding:0 var(--pad) 70px}
+#num{position:fixed;right:var(--pad);top:50%;transform:translateY(-46%);z-index:0;pointer-events:none;
+  font:600 clamp(140px,18vw,300px)/1 var(--head);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px #d3ccbe}
+body.open #num{display:none}
+.col{position:relative;z-index:1;width:min(660px,54vw)}
+.kick{display:flex;align-items:center;gap:10px;font:500 11px/1 var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 26px}
+.kick::before{content:"";width:8px;height:8px;background:var(--acc)}
+h1{font:500 clamp(28px,3.4vw,48px)/1.12 var(--head);letter-spacing:-.015em;margin:0 0 26px}
+.lines{list-style:none;padding:0;margin:0;counter-reset:l}
+.lines li{counter-increment:l;position:relative;padding:13px 0 13px 46px;border-top:1px solid var(--line);
+  font-size:clamp(16px,1.35vw,19px);line-height:1.45;color:#2a2a2f}
+.lines li:last-child{border-bottom:1px solid var(--line)}
+.lines li::before{content:counter(l,decimal-leading-zero);position:absolute;left:0;top:16px;font:600 11px/1 var(--head);color:var(--acc)}
+.lines li b{font-weight:600;color:var(--ink)}
+
+.lead{font-size:clamp(17px,1.45vw,20px);line-height:1.45;color:#2a2a2f;margin:0;padding-left:16px;border-left:3px solid var(--acc)}
+.lead b{font-weight:600;color:var(--ink)}
+
+/* обложка и финал */
+.cover h1{font-size:clamp(36px,5.6vw,82px);line-height:1.04;font-weight:600;margin-bottom:24px}
+.cover h1 span{color:var(--acc)}
+.cover .sub{font-size:clamp(17px,1.5vw,21px);line-height:1.5;color:#45423d;max-width:44ch;margin:0}
+.cover .lines{margin-top:34px}
+.cover .col{width:min(780px,60vw)}
+body.open .cover .col{width:min(660px,54vw)}
+
+/* ---------- схемы ---------- */
+.fig{margin-top:30px}
+/* лента времени */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink)}
+.tl li{position:relative;padding:22px 14px 0 0}
+.tl li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.tl li:last-child::before{background:var(--acc);border-color:var(--acc)}
+.tl .y{display:block;font:500 13px/1.2 var(--head);margin-bottom:8px}
+.tl .d{display:block;font-size:15px;line-height:1.4;color:#3a3833}
+/* сетка 2×2 */
+.grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);border-left:1px solid var(--line)}
+.grid div{padding:16px 18px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.45)}
+.grid .l{display:block;font:500 12px/1.3 var(--head);margin-bottom:8px}
+.grid .v{display:block;font-size:15px;line-height:1.4;color:#3a3833}
+/* сравнение */
+.cmp{width:100%;border-collapse:collapse;font-size:15px;line-height:1.4}
+.cmp th{font:500 12px/1.2 var(--head);text-align:left;padding:0 14px 12px 0;border-bottom:2px solid var(--ink)}
+.cmp th.a{color:var(--acc)}
+.cmp td{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;color:#3a3833}
+.cmp td:first-child{color:var(--mut);width:24%}
+.cmp td.a{color:var(--ink);font-weight:500}
+/* шаги */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.steps li{background:rgba(255,255,255,.55);border:1px solid var(--line);border-top:3px solid var(--ink);padding:14px 12px 16px;font-size:14px;line-height:1.35;min-height:118px}
+.steps li:last-child{border-top-color:var(--acc)}
+.steps b{display:block;font:600 22px/1 var(--head);margin-bottom:12px}
+.steps li:last-child b{color:var(--acc)}
+
+/* ---------- блок с текстом справа ---------- */
+#panel{position:fixed;top:0;right:0;bottom:0;width:var(--panel);background:var(--night);color:var(--night-ink);
+  padding:clamp(30px,5.5vh,64px) clamp(28px,3vw,50px);overflow-y:auto;display:none;z-index:6}
+body.open #panel{display:block}
+#panel .t{display:flex;align-items:center;gap:10px;font:500 11px/1.3 var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 24px}
+#panel p{font-size:17px;line-height:1.66;margin:0 0 17px}
+#panel p:last-of-type{margin-bottom:0}
+#panel .src{margin-top:26px;padding-top:16px;border-top:1px solid var(--night-line);font-size:13px;line-height:1.6;color:var(--night-mut)}
+#panel .src div + div{margin-top:5px}
+
+/* ---------- кнопка снизу ---------- */
+#logo{position:fixed;left:var(--pad);bottom:30px;z-index:8;display:flex;align-items:center;gap:14px;background:none;border:0;padding:0}
+#logo i{width:52px;height:52px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;
+  font-style:normal;font:400 24px/1 var(--head)}
+#logo span{font:500 10px/1 var(--head);letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+body.open #logo i{background:var(--ink)}
+
+/* ---------- навигация ---------- */
+#nav{position:fixed;right:var(--pad);bottom:30px;z-index:8;display:flex;align-items:center;gap:14px}
+body.open #nav{right:calc(var(--panel) + 36px)}
+#nav .no{font:500 11px/1 var(--head);letter-spacing:.1em;color:var(--mut);font-variant-numeric:tabular-nums;margin-right:6px}
+#nav .no b{color:var(--ink);font-weight:500}
+#nav button{width:48px;height:48px;border-radius:50%;border:1px solid var(--ink);background:var(--paper);font-size:15px}
+#nav button:hover{background:var(--ink);color:var(--paper)}
+
+/* ---------- список экранов ---------- */
+#index{position:fixed;inset:0;background:var(--paper);z-index:9;display:none;overflow-y:auto;padding:var(--pad)}
+body.idx #index{display:block}
+#index h2{display:flex;align-items:center;gap:10px;font:500 11px/1 var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 30px}
+#index h2::before{content:"";width:8px;height:8px;background:var(--acc)}
+#index ol{list-style:none;margin:0;padding:0;columns:2;column-gap:60px}
+#index li{break-inside:avoid}
+#index button{width:100%;text-align:left;border:0;background:none;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px;display:flex;gap:18px}
+#index button em{font:500 12px/1.6 var(--head);font-style:normal;color:var(--acc);min-width:28px}
+#index li.cur button{font-weight:600}
+
+@media(min-width:1600px){
+  .col,body.open .cover .col{width:min(880px,50vw)}
+  .cover .col{width:min(980px,56vw)}
+  h1{font-size:60px}
+  .cover h1{font-size:96px}
+  .cover .sub{font-size:24px}
+  .lines li,.lead{font-size:22px}
+  .lines li::before{top:19px}
+  .tl .d,.grid .v,.cmp,.steps li{font-size:18px}
+  .tl .y,.grid .l,.cmp th{font-size:14px}
+  .steps b{font-size:28px}
+  .steps li{min-height:150px}
+  #panel p{font-size:19px}
+}
+@media(max-width:900px){
+  .col,.cover .col,body.open .cover .col{width:100%}
+  :root{--panel:100vw}
+  #num,#parts{display:none}
+  #nav{bottom:auto;top:8px}
+  body.open #nav{right:var(--pad)}
+  #top{padding-right:140px}
+  #top .brand{white-space:nowrap}
+  #nav .no{display:none}
+  .tl,.grid,.steps{grid-template-columns:1fr 1fr}
+  #index ol{columns:1}
+}
+</style>
+</head>
+<body>
+<header id="top"><div class="brand"><i></i>Политология · тема 8</div><div id="parts"></div></header>
+<div id="num"></div>
+<main id="stage"></main>
+<aside id="panel"></aside>
+<button id="logo" aria-expanded="false"><i>+</i><span>текст слайда</span></button>
+<div id="nav"><span class="no" id="no"></span><button id="prev" aria-label="назад">←</button><button id="next" aria-label="вперёд">→</button></div>
+<div id="index"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
