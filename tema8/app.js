@@ -44,7 +44,7 @@
     h += '</div>';
     stage.className = big ? 'cover' : '';
     stage.innerHTML = h;
-    num.textContent = s.kind === 'cover' ? '08' : (s.kind === 'end' ? '' : pad(s.n));
+    num.textContent = pad(cur + 1);
 
     var t = '<p class="t">' + (s.n !== null && s.n !== undefined ? pad(s.n) + ' · ' : '') + s.title.replace(/<[^>]+>/g, '') + '</p>';
     t += (s.text || []).map(function (x) { return '<p>' + x + '</p>'; }).join('');
